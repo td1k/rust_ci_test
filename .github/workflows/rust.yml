@@ -33,5 +33,5 @@ jobs:
       - name: Run a multi-line script
         run: |
           cd adder
-          cargo run
+          cargo build
           cargo test
