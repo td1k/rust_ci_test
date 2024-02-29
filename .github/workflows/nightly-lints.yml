@@ -6,6 +6,10 @@ jobs:
   clippy:
     name: Clippy
     runs-on: ubuntu-latest
+    defaults:
+        run:
+          shell: bash
+          working-directory: ./adder    
     steps:
 
       - uses: actions/checkout@v2
@@ -18,7 +22,7 @@ jobs:
       - uses: actions-rs/cargo@v1
         with:
           command: fmt
-          args: --all -- --check --manifest-path adder
+          args: --all -- --check
       - uses: actions-rs/cargo@v1
         with:
           command: clippy
