@@ -2,6 +2,10 @@ on: [push, pull_request]
 
 name: Lints
 
+defaults:
+    run:
+      working-directory: adder
+  
 jobs:
   clippy:
     name: Clippy
@@ -19,7 +23,6 @@ jobs:
         with:
           command: fmt
           args: --all -- --check
-          working-directory: ./
       - uses: actions-rs/cargo@v1
         with:
           command: clippy
