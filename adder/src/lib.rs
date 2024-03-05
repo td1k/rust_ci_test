@@ -2,11 +2,13 @@
 mod tests {
     #[test]
     fn basic_math() {
-        assert_eq!(2 + 2, 4);
+        let my_sum = 2 + 2;
+        assert_eq!(my_sum, 4);
     }
 
     #[test]
     fn basic_math2() {
-        assert_eq!(3 + 2, 5);
-    }    
+        let my_sum = 3 + 2;
+        assert_eq!(my_sum, 5);
+    }
 }
