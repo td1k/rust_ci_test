@@ -1,10 +1,6 @@
 on: [push, pull_request]
 
 name: Lints
-
-defaults:
-    run:
-      working-directory: adder
   
 jobs:
   clippy:
