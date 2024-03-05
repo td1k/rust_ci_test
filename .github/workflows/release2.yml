@@ -15,19 +15,19 @@ jobs:
       - name: Build project
         run: cargo build --release
         #--locked
-      - name: fix git
-        run: git config --global --add safe.directory /github/workspace
-      - name: Bump version and push tag/create release point
-        uses: anothrNick/github-tag-action@1.17.2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WITH_V: true
-        id: bump_version
+      #- name: fix git
+      #  run: git config --global --add safe.directory /github/workspace
+      #- name: Bump version and push tag/create release point
+      #  uses: anothrNick/github-tag-action@1.17.2
+      #  env:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #    WITH_V: true
+      #  id: bump_version
       - name: Upload binary to release
         uses: svenstaro/upload-release-action@v1-release
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: target/release/guessing_game
           asset_name: guessing_game-linux-amd64
-          tag: ${{ steps.bump_version.outputs.new_tag }}
+          tag: ${{ github.ref }}
           overwrite: true
