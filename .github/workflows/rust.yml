@@ -22,16 +22,24 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      - uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release --all-features
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v3
+#      - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
       #- name: Run a one-line script
       #  run: cargo run
 
       # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          cd adder
-          cargo build
-          cargo test
+ #     - name: Run a multi-line script
+ #       run: |
+ #         cd adder
+ #         cargo build
+ #         cargo test
