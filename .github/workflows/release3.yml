@@ -10,14 +10,31 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+      - name: Build Release
+        uses: actions-rs/cargo@v1
+        with:
+          command: build
+          args: --release --all-features        
       - name: Build
-        run: echo ${{ github.sha }} > Release.txt
+        run: |
+            echo ${{ github.sha }} > Release.txt
+            ls target
+            ls target/release
       - name: Test
         run: cat Release.txt
+      - name: Generate a changelog
+        uses: orhun/git-cliff-action@v3
+        with:
+            config: .github/workflows/cliff.toml
+            args: --verbose
+        env:
+            OUTPUT: CHANGELOG.md        
       - name: Release
         uses: softprops/action-gh-release@v1
         #if: startsWith(github.ref, 'refs/tags/')
         with:
-            tag_name: v999.02.01
+            tag_name: v999.02.02
             files: |
                 Release.txt
+                CHANGELOG.md
+
